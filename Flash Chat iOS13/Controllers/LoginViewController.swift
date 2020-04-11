@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
                     self.errorLabel.text = err.localizedDescription
                 } else if let result = authResult {
                     print("Login succesful: \(result)")
-                    self.performSegue(withIdentifier: "LoginToChat", sender: self)
+                    self.performSegue(withIdentifier: K.loginSegue, sender: self)
                 }
                 Timer.scheduledTimer(withTimeInterval: 4.0 , repeats: false) { (timer) in
                     self.errorLabel.text = ""

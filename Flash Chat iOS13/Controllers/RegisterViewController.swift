@@ -17,7 +17,7 @@ class RegisterViewController: UIViewController {
                     self.errorLabel.text = err.localizedDescription
                 } else if let result = authResult {
                     print("Authentication successfully with result: \(result)")
-                    self.performSegue(withIdentifier: "RegisterToChat", sender: self)
+                    self.performSegue(withIdentifier: K.registerSegue, sender: self)
                 }
                 Timer.scheduledTimer(withTimeInterval: 4.0 , repeats: false) { (timer) in
                     self.errorLabel.text = ""
