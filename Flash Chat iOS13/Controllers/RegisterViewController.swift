@@ -19,6 +19,9 @@ class RegisterViewController: UIViewController {
                     print("Authentication successfully with result: \(result)")
                     self.performSegue(withIdentifier: "RegisterToChat", sender: self)
                 }
+                Timer.scheduledTimer(withTimeInterval: 4.0 , repeats: false) { (timer) in
+                    self.errorLabel.text = ""
+                }
             }
         }
     }
