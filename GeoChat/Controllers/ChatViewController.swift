@@ -36,15 +36,16 @@ class ChatViewController: UIViewController {
         if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
             db.collection(K.FStore.collectionName).addDocument(data: [
                 K.FStore.senderField: messageSender,
-                K.FStore.bodyField: messageBody
+                K.FStore.bodyField: messageBody,
+                K.FStore.dateField: Date().timeIntervalSince1970
             ]) { (error) in
                 if let err = error {
                     print(err.localizedDescription)
                 } else {
                     print("[Firestore]: Successfully saved data.")
+                    self.messageTextfield.text = ""
                 }
             }
-//            let message = Message(sender: messageSender, body: messageBody)
         }
     
     }
@@ -59,14 +60,29 @@ class ChatViewController: UIViewController {
         }
     }
     
+    // MARK: - Functions
     func loadMessages(){
-        messages = []
         
-        db.collection(K.FStore.collectionName).getDocuments { (querySnapshot, error) in
+        
+        db.collection(K.FStore.collectionName)
+            .order(by: K.FStore.dateField)
+            .addSnapshotListener { (querySnapshot, error) in
+            self.messages = []
             if let err = error {
                 print("[Firestore]: There was an issue retrieving form Firestore: \(err)")
             } else {
-                
+                if let snapshotDocument = querySnapshot?.documents {
+                    for doc in snapshotDocument {
+                        let data = doc.data()
+                        if let messageSender = data[K.FStore.senderField] as? String, let messageBody = data[K.FStore.bodyField] as? String {
+                            let newMessage = Message(sender: messageSender, body: messageBody)
+                            self.messages.append(newMessage)
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                }
             }
         }
     }
