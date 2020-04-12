@@ -7,7 +7,7 @@
 
 struct K {
     // MARK: - App Title
-    static let appTitle = "FlashChat"
+    static let appTitle = "GeoChat"
     
     // MARK: - Segues
     static let registerSegue = "RegisterToChat"

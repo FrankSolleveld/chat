@@ -1,6 +1,7 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 
 class ChatViewController: UIViewController {
 
@@ -15,6 +16,8 @@ class ChatViewController: UIViewController {
         Message(sender: "123@123.com", body: "What's up?")
     ]
     
+    let db = Firestore.firestore()
+    
     // MARK: - LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +26,27 @@ class ChatViewController: UIViewController {
         navigationItem.hidesBackButton = true
         
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
+        
+        loadMessages()
     }
     
     // MARK: - @IBActions
     @IBAction func sendPressed(_ sender: UIButton) {
+        
+        if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
+            db.collection(K.FStore.collectionName).addDocument(data: [
+                K.FStore.senderField: messageSender,
+                K.FStore.bodyField: messageBody
+            ]) { (error) in
+                if let err = error {
+                    print(err.localizedDescription)
+                } else {
+                    print("[Firestore]: Successfully saved data.")
+                }
+            }
+//            let message = Message(sender: messageSender, body: messageBody)
+        }
+    
     }
     
     @IBAction func logOutButtonPressed(_ sender: UIBarButtonItem) {
@@ -36,6 +56,18 @@ class ChatViewController: UIViewController {
             navigationController?.popToRootViewController(animated: true)
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
+        }
+    }
+    
+    func loadMessages(){
+        messages = []
+        
+        db.collection(K.FStore.collectionName).getDocuments { (querySnapshot, error) in
+            if let err = error {
+                print("[Firestore]: There was an issue retrieving form Firestore: \(err)")
+            } else {
+                
+            }
         }
     }
     
