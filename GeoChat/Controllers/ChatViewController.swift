@@ -22,7 +22,6 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        title = K.appTitle
         navigationItem.hidesBackButton = true
         
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
@@ -43,7 +42,9 @@ class ChatViewController: UIViewController {
                     print(err.localizedDescription)
                 } else {
                     print("[Firestore]: Successfully saved data.")
-                    self.messageTextfield.text = ""
+                    DispatchQueue.main.async {
+                        self.messageTextfield.text = ""
+                    }
                 }
             }
         }
@@ -62,8 +63,6 @@ class ChatViewController: UIViewController {
     
     // MARK: - Functions
     func loadMessages(){
-        
-        
         db.collection(K.FStore.collectionName)
             .order(by: K.FStore.dateField)
             .addSnapshotListener { (querySnapshot, error) in
@@ -79,6 +78,8 @@ class ChatViewController: UIViewController {
                             self.messages.append(newMessage)
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
+                                let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                             }
                         }
                     }
