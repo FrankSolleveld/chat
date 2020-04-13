@@ -16,7 +16,7 @@ class ChatViewController: UIViewController {
     var messages: [Message] = [
         Message(sender: K.appTitle, body: "You might wonder why you can't see the live messages."),
         Message(sender: K.appTitle, body: "It's because you're not in your setted region. Or you haven't set one yet."),
-        Message(sender: K.appTitle, body: "Log out and tap on Geofencing to start a region. To do this, zoom in on your desired location and hold. A red circle will appear. If you already set a region, go back to your region or change it to your current location to be able to chat again.")
+        Message(sender: K.appTitle, body: "Log out and tap on Geofencing to start a region. To do this, zoom in on your desired location and hold. A green circle will appear. If you already set a region, go back to your region or change it to your current location to be able to chat again.")
     ]
     
     let db = Firestore.firestore()
