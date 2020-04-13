@@ -20,7 +20,6 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
             if granted {
                 print("[MapViewController] UNUserNotificationCenter: User granted permission.")
@@ -114,13 +113,15 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         showAlert(title: K.GeoFence.geoAlertEnteredTitle , message: K.GeoFence.geoAlertEnteredBody)
         showNotification(title: K.GeoFence.geoAlertEnteredTitle, message: K.GeoFence.geoAlertEnteredBody)
-        isInRegion = true
+        isInRegion = false
+        defaults.set(isInRegion, forKey: K.GeoFence.isInRegionKey)
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         showAlert(title: K.GeoFence.geoAlertExitTitle, message: K.GeoFence.geoAlertExitBody)
         showNotification(title: K.GeoFence.geoAlertExitTitle, message: K.GeoFence.geoAlertExitBody)
-        isInRegion = false
+        isInRegion = true
+        defaults.set(isInRegion, forKey: K.GeoFence.isInRegionKey)
     }
 }
 
