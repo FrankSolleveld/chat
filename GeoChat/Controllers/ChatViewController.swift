@@ -44,7 +44,7 @@ class ChatViewController: UIViewController {
     
     // MARK: - @IBActions
     @IBAction func sendPressed(_ sender: UIButton) {
-        if messageTextfield.text == "" {
+        if let _ = messageTextfield.text?.isEmpty {
             return
         } else {
             if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {

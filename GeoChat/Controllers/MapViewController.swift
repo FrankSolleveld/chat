@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
     let locationManager = CLLocationManager()
     let defaults = UserDefaults.standard
     var isInRegion = false
+    let feedbackGenerator = UISelectionFeedbackGenerator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,9 @@ class MapViewController: UIViewController {
         
         let circle = MKCircle(center: coordinate, radius: region.radius)
         mapView.addOverlay(circle)
+        
+        // This provides the user with haptic feedback to indicate a change in the selection of the region.
+        feedbackGenerator.selectionChanged()
     }
     
     // Method that shows alert when going in/out the specific region.
