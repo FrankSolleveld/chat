@@ -15,6 +15,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,14 +28,20 @@ class MapViewController: UIViewController {
         locationManager.requestAlwaysAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        checkForCoordinates()
     }
     
     @IBAction func addRegion(_ sender: UILongPressGestureRecognizer) {
         let touchLocation = sender.location(in: mapView)
+        
+        // Converts user touch location to coordinates
         let coordinate = mapView.convert(touchLocation, toCoordinateFrom: mapView)
+        saveCoordinates(coordinate)
+        
         let region = CLCircularRegion(center: coordinate, radius: 200, identifier: "geoRegion")
         mapView.removeOverlays(mapView.overlays)
         locationManager.startMonitoring(for: region)
+        
         let circle = MKCircle(center: coordinate, radius: region.radius)
         mapView.addOverlay(circle)
     }
@@ -57,7 +64,27 @@ class MapViewController: UIViewController {
         
         let request = UNNotificationRequest(identifier: "geoNotification", content: content, trigger: nil)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
+    func saveCoordinates(_ coordinate: CLLocationCoordinate2D){
+        let lat = Double(coordinate.latitude)
+        let long = Double(coordinate.longitude)
         
+        defaults.set(lat, forKey: K.GeoFence.defaultsLatKey)
+        defaults.set(long, forKey: K.GeoFence.defaultsLongKey)
+    }
+    
+    func checkForCoordinates() {
+        let lat = defaults.double(forKey: K.GeoFence.defaultsLatKey)
+        let long = defaults.double(forKey: K.GeoFence.defaultsLongKey)
+        
+        let coordinates = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        let region = CLCircularRegion(center: coordinates, radius: 200, identifier: "geoRegion")
+        mapView.removeOverlays(mapView.overlays)
+        locationManager.startMonitoring(for: region)
+        
+        let circle = MKCircle(center: coordinates, radius: region.radius)
+        mapView.addOverlay(circle)
     }
 
 

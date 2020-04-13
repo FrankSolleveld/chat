@@ -26,6 +26,7 @@
 		95CA06F2244376C900F9DF7C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CA06F1244376C900F9DF7C /* AuthenticationServices.framework */; };
 		95D58F252444768F00146BDB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D58F242444768F00146BDB /* MapKit.framework */; };
 		95D58F272444786200146BDB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D58F262444786200146BDB /* MapViewController.swift */; };
+		95D58F2924448BD400146BDB /* GeoRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D58F2824448BD400146BDB /* GeoRegion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		95CA06F1244376C900F9DF7C /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		95D58F242444768F00146BDB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		95D58F262444786200146BDB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		95D58F2824448BD400146BDB /* GeoRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoRegion.swift; sourceTree = "<group>"; };
 		9F91485F87A1D2CB3156AC6B /* Pods-Flash Chat iOS13.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flash Chat iOS13.release.xcconfig"; path = "Target Support Files/Pods-Flash Chat iOS13/Pods-Flash Chat iOS13.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				951D03B824433561007C0C94 /* Message.swift */,
+				95D58F2824448BD400146BDB /* GeoRegion.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				95A419F72441CC9700FEB105 /* K.swift in Sources */,
 				0B628191235DF01B00E35CAF /* ChatViewController.swift in Sources */,
 				0B62818D235DF00B00E35CAF /* RegisterViewController.swift in Sources */,
+				95D58F2924448BD400146BDB /* GeoRegion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,7 +445,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GeoChat/GeoChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 2BRJ7L3SUQ;
 				INFOPLIST_FILE = GeoChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -462,7 +466,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GeoChat/GeoChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 2BRJ7L3SUQ;
 				INFOPLIST_FILE = GeoChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
