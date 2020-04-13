@@ -1,5 +1,6 @@
 
 import UIKit
+import FirebaseAuth
 
 class WelcomeViewController: UIViewController {
     
@@ -18,6 +19,7 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addUserListener()
         titleLabel.text = ""
         var characterIndex = 0.0
         let titleText = K.appTitle
@@ -29,7 +31,16 @@ class WelcomeViewController: UIViewController {
         }
     }
     
+    func addUserListener() {
+        let _ = Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user == nil {
+               return
+            } else {
+                self.performSegue(withIdentifier: K.loginListenerSegue, sender: auth)
+            }
+      }
+    
 }
 
-
+}
 

@@ -92,6 +92,7 @@
                     <navigationItem key="navigationItem" id="8eo-2W-mt6"/>
                     <connections>
                         <outlet property="titleLabel" destination="y7D-jv-BlJ" id="7U9-Ah-qfi"/>
+                        <segue destination="lwd-AH-u8E" kind="show" identifier="welcomeToChat" id="MbH-zi-eHw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X0w-oB-wTX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -453,7 +454,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aan-xv-NNc"/>
+        <segue reference="MbH-zi-eHw"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="paperplane.fill" catalog="system" width="128" height="121"/>
