@@ -16,14 +16,6 @@ struct K {
     static let cellIdentifier = "ReusableCell"
     static let cellNibName = "MessageCel"
 
-    
-    struct BrandColors {
-        static let purple = "BrandPurple"
-        static let lightPurple = "BrandLightPurple"
-        static let blue = "BrandBlue"
-        static let lighBlue = "BrandLightBlue"
-    }
-    
     struct FStore {
         static let collectionName = "messages"
         static let senderField = "sender"
@@ -44,3 +36,10 @@ struct K {
         static let geoAlertExitBody = "You can't use GeoChat until you have returned."
     }
 }
+
+/*
+ 
+ If you’re reading this, you are in your setted region and the connection to the database was succesful. 
+ This app is made by Frank Solleveld, and is intended for educational purposes only.
+ 
+ */

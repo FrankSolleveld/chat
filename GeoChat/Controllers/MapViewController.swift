@@ -22,7 +22,11 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
-            // MARK: - TODO: Handle completion handler for Notifications
+            if granted {
+                print("[MapViewController] UNUserNotificationCenter: User granted permission.")
+            } else if let err = error {
+                print("[MapViewController] UNUserNotificationCenter: An error occured \(err)")
+            }
         }
         
         locationManager.delegate = self
@@ -126,8 +130,7 @@ extension MapViewController: MKMapViewDelegate {
         
          // This renders the selected region for the GeoFence on the map.
         let circleRenderer = MKCircleRenderer(circle: circleOverlay)
-        circleRenderer.strokeColor = .red
-        circleRenderer.fillColor = .red
+        circleRenderer.fillColor = UIColor(named: "GreenColor")
         circleRenderer.alpha = 0.5
         
         return circleRenderer

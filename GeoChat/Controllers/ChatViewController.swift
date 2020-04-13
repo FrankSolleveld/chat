@@ -10,12 +10,13 @@ class ChatViewController: UIViewController {
     // MARK: - @IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
+    @IBOutlet weak var sendButton: UIButton!
     
     // MARK: - Variables
     var messages: [Message] = [
-        Message(sender: "123@@123.com", body: "You might wonder why you can't see the live messages."),
-        Message(sender: "a@b.com", body: "It's because you're not in your setted region."),
-        Message(sender: "123@123.com", body: "Go back to your region or change it to your current location to be able to chat again.")
+        Message(sender: K.appTitle, body: "You might wonder why you can't see the live messages."),
+        Message(sender: K.appTitle, body: "It's because you're not in your setted region. Or you haven't set one yet."),
+        Message(sender: K.appTitle, body: "Log out and tap on Geofencing to start a region. To do this, zoom in on your desired location and hold. A red circle will appear. If you already set a region, go back to your region or change it to your current location to be able to chat again.")
     ]
     
     let db = Firestore.firestore()
@@ -31,37 +32,47 @@ class ChatViewController: UIViewController {
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
         let isUserInRegion = defaults.bool(forKey: K.GeoFence.isInRegionKey)
         if isUserInRegion == true {
+            messages = []
             loadMessages()
+            self.messageTextfield.isHidden = false
+            self.sendButton.isHidden = false
+        } else {
+            self.messageTextfield.isHidden = true
+            self.sendButton.isHidden = true
         }
     }
     
     // MARK: - @IBActions
     @IBAction func sendPressed(_ sender: UIButton) {
-        
-        if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
-            db.collection(K.FStore.collectionName).addDocument(data: [
-                K.FStore.senderField: messageSender,
-                K.FStore.bodyField: messageBody,
-                K.FStore.dateField: Date().timeIntervalSince1970
-            ]) { (error) in
-                if let err = error {
-                    print(err.localizedDescription)
-                } else {
-                    print("[Firestore]: Successfully saved data.")
-                    DispatchQueue.main.async {
-                        self.messageTextfield.text = ""
+        if messageTextfield.text == "" {
+            return
+        } else {
+            if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
+                db.collection(K.FStore.collectionName).addDocument(data: [
+                    K.FStore.senderField: messageSender,
+                    K.FStore.bodyField: messageBody,
+                    K.FStore.dateField: Date().timeIntervalSince1970
+                ]) { (error) in
+                    if let err = error {
+                        print(err.localizedDescription)
+                    } else {
+                        print("[Firestore]: Successfully saved data.")
+                        DispatchQueue.main.async {
+                            self.messageTextfield.text = ""
+                        }
                     }
                 }
             }
         }
-    
     }
     
     @IBAction func logOutButtonPressed(_ sender: UIBarButtonItem) {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
-            navigationController?.popToRootViewController(animated: true)
+            self.dismiss(animated: false) {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
@@ -74,7 +85,7 @@ class ChatViewController: UIViewController {
             .addSnapshotListener { (querySnapshot, error) in
             self.messages = []
             if let err = error {
-                print("[Firestore]: There was an issue retrieving form Firestore: \(err)")
+                print("[Firestore]: There was an issue retrieving from Firestore: \(err)")
             } else {
                 if let snapshotDocument = querySnapshot?.documents {
                     for doc in snapshotDocument {
@@ -105,21 +116,23 @@ extension ChatViewController: UITableViewDataSource {
         let message = messages[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageCel
-        cell.label.text = message.body
+        cell.messageBody.text = message.body
+        cell.userLabel.text = message.sender
         
         // Message from current user.
         if message.sender == Auth.auth().currentUser?.email {
+            cell.userLabel.text = "Me"
             cell.leftImageView.isHidden = true
             cell.rightImageView.isHidden = false
-            cell.messageBubble.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
-            cell.label.textColor = UIColor(named: K.BrandColors.purple)
+            cell.messageBubble.backgroundColor = UIColor(named: "GreenColor")
+            cell.messageBody.textColor = .white
         }
         // Message from another sender
         else {
             cell.leftImageView.isHidden = false
             cell.rightImageView.isHidden = true
-            cell.messageBubble.backgroundColor = UIColor(named: K.BrandColors.purple)
-            cell.label.textColor = UIColor(named: K.BrandColors.lightPurple)
+            cell.messageBubble.backgroundColor = UIColor(named: "GreenColor")
+            cell.messageBody.textColor = .white
         }
         return cell
     }
