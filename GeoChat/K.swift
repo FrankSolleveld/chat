@@ -30,4 +30,12 @@ struct K {
         static let bodyField = "body"
         static let dateField = "date"
     }
+    
+    struct GeoFence {
+        static let geoAlertEnteredTitle = "You Entered the Region."
+        static let geoAlertEnteredBody = "You can now use GeoChat."
+        
+        static let geoAlertExitTitle = "You Left the Region."
+        static let geoAlertExitBody = "You can't use GeoChat until you have returned."
+    }
 }

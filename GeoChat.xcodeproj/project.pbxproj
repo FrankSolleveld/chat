@@ -24,6 +24,8 @@
 		955306062442075D009B6DFE /* MessageCel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 955306042442075D009B6DFE /* MessageCel.xib */; };
 		95A419F72441CC9700FEB105 /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A419F62441CC9700FEB105 /* K.swift */; };
 		95CA06F2244376C900F9DF7C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CA06F1244376C900F9DF7C /* AuthenticationServices.framework */; };
+		95D58F252444768F00146BDB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D58F242444768F00146BDB /* MapKit.framework */; };
+		95D58F272444786200146BDB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D58F262444786200146BDB /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		95A419F62441CC9700FEB105 /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		95CA06F0244376B600F9DF7C /* GeoChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GeoChat.entitlements; sourceTree = "<group>"; };
 		95CA06F1244376C900F9DF7C /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
+		95D58F242444768F00146BDB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		95D58F262444786200146BDB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9F91485F87A1D2CB3156AC6B /* Pods-Flash Chat iOS13.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flash Chat iOS13.release.xcconfig"; path = "Target Support Files/Pods-Flash Chat iOS13/Pods-Flash Chat iOS13.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,6 +63,7 @@
 			files = (
 				95CA06F2244376C900F9DF7C /* AuthenticationServices.framework in Frameworks */,
 				951D03BC24435BA6007C0C94 /* IQKeyboardManagerSwift in Frameworks */,
+				95D58F252444768F00146BDB /* MapKit.framework in Frameworks */,
 				1761CA09EC7B67847DE1DACC /* Pods_GeoChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,6 +114,7 @@
 				0B62818C235DF00B00E35CAF /* RegisterViewController.swift */,
 				0B62818E235DF01000E35CAF /* LoginViewController.swift */,
 				0B628190235DF01B00E35CAF /* ChatViewController.swift */,
+				95D58F262444786200146BDB /* MapViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -134,6 +140,7 @@
 		5C144C5C02DE04ACE46EBEE0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				95D58F242444768F00146BDB /* MapKit.framework */,
 				95CA06F1244376C900F9DF7C /* AuthenticationServices.framework */,
 				7AFC820A5DB0D60DC1533BF7 /* Pods_GeoChat.framework */,
 			);
@@ -277,6 +284,7 @@
 				951D03B924433561007C0C94 /* Message.swift in Sources */,
 				0B62818B235DF00000E35CAF /* WelcomeViewController.swift in Sources */,
 				955306052442075D009B6DFE /* MessageCel.swift in Sources */,
+				95D58F272444786200146BDB /* MapViewController.swift in Sources */,
 				0B628177235DEE8100E35CAF /* AppDelegate.swift in Sources */,
 				0B628179235DEE8100E35CAF /* SceneDelegate.swift in Sources */,
 				0B62818F235DF01000E35CAF /* LoginViewController.swift in Sources */,

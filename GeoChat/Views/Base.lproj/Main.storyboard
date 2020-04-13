@@ -54,18 +54,35 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="7ga-No-cVm"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ls4-k3-Ugd">
+                                <rect key="frame" x="0.0" y="676" width="414" height="61"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="h0M-WO-h0Y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Geofencing">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="oTd-lH-dV5" kind="show" id="xnl-cy-TIc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="dWe-nW-2HB" firstAttribute="trailing" secondItem="w0w-hE-MVy" secondAttribute="trailing" id="7Vx-Xq-VaO"/>
                             <constraint firstItem="dWe-nW-2HB" firstAttribute="leading" secondItem="w0w-hE-MVy" secondAttribute="leading" id="Ag7-Hh-D9X"/>
                             <constraint firstItem="y7D-jv-BlJ" firstAttribute="centerY" secondItem="H86-OM-sMN" secondAttribute="centerY" id="Ipj-e5-54T"/>
+                            <constraint firstItem="Ls4-k3-Ugd" firstAttribute="leading" secondItem="w0w-hE-MVy" secondAttribute="leading" id="Lw6-WE-K4k"/>
                             <constraint firstItem="dWe-nW-2HB" firstAttribute="bottom" secondItem="w0w-hE-MVy" secondAttribute="bottom" id="ZsM-5p-lNb"/>
                             <constraint firstItem="dWe-nW-2HB" firstAttribute="top" secondItem="h2x-tz-C9Y" secondAttribute="bottom" constant="8" id="cnI-Zh-aEc"/>
                             <constraint firstItem="w0w-hE-MVy" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y7D-jv-BlJ" secondAttribute="trailing" id="eaW-iX-nU1"/>
+                            <constraint firstItem="h2x-tz-C9Y" firstAttribute="top" secondItem="Ls4-k3-Ugd" secondAttribute="bottom" constant="8" id="fQq-Hz-Avz"/>
                             <constraint firstItem="y7D-jv-BlJ" firstAttribute="leading" secondItem="w0w-hE-MVy" secondAttribute="leading" constant="52" id="jQ7-o7-bnG"/>
                             <constraint firstItem="h2x-tz-C9Y" firstAttribute="trailing" secondItem="w0w-hE-MVy" secondAttribute="trailing" id="sNZ-Ul-l2q"/>
                             <constraint firstItem="h2x-tz-C9Y" firstAttribute="leading" secondItem="w0w-hE-MVy" secondAttribute="leading" id="tLN-qz-xiG"/>
+                            <constraint firstItem="Ls4-k3-Ugd" firstAttribute="trailing" secondItem="w0w-hE-MVy" secondAttribute="trailing" id="u3S-f6-D2S"/>
                             <constraint firstItem="y7D-jv-BlJ" firstAttribute="centerX" secondItem="H86-OM-sMN" secondAttribute="centerX" id="vNd-pq-rnh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="w0w-hE-MVy"/>
@@ -182,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1857.9710144927537" y="-295.3125"/>
+            <point key="canvasLocation" x="2603" y="-623"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Hzg-jR-yiY">
@@ -287,7 +304,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XcE-Gk-YZg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1786.9565217391305" y="654.91071428571422"/>
+            <point key="canvasLocation" x="2603" y="1163"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="0LM-ba-OeC">
+            <objects>
+                <viewController id="oTd-lH-dV5" customClass="MapViewController" customModule="GeoChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7gc-H4-k2o">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7Vd-yP-l6s">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="delegate" destination="oTd-lH-dV5" id="0h1-vK-VP1"/>
+                                    <outletCollection property="gestureRecognizers" destination="AGc-Sq-F68" appends="YES" id="HRf-dE-dxp"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="7Vd-yP-l6s" secondAttribute="bottom" id="D8r-bK-1Pl"/>
+                            <constraint firstItem="7Vd-yP-l6s" firstAttribute="trailing" secondItem="aeF-8U-lL1" secondAttribute="trailing" id="b2b-dO-ryZ"/>
+                            <constraint firstItem="7Vd-yP-l6s" firstAttribute="top" secondItem="aeF-8U-lL1" secondAttribute="top" id="gDA-Ml-vdR"/>
+                            <constraint firstItem="7Vd-yP-l6s" firstAttribute="leading" secondItem="aeF-8U-lL1" secondAttribute="leading" id="wUM-TZ-0tO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aeF-8U-lL1"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0ro-Rl-4m3"/>
+                    <connections>
+                        <outlet property="mapView" destination="7Vd-yP-l6s" id="W83-yv-BDw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EMQ-lL-W8c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="AGc-Sq-F68">
+                    <connections>
+                        <action selector="addRegion:" destination="oTd-lH-dV5" id="RFi-52-Xfo"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2486.9565217391305" y="133.92857142857142"/>
         </scene>
         <!--GeoChat-->
         <scene sceneID="yeH-Ia-3JZ">
@@ -365,7 +422,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jFP-qE-CyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2942.0289855072465" y="134.59821428571428"/>
+            <point key="canvasLocation" x="4003" y="135"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UjW-MX-D71">
@@ -392,7 +449,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aan-xv-NNc"/>
+        <segue reference="ZzS-v4-Ri9"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="paperplane.fill" catalog="system" width="128" height="121"/>
