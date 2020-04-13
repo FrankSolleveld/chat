@@ -2,6 +2,8 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import MapKit
+import CoreLocation
 
 class ChatViewController: UIViewController {
 
@@ -11,22 +13,26 @@ class ChatViewController: UIViewController {
     
     // MARK: - Variables
     var messages: [Message] = [
-        Message(sender: "123@@123.com", body: "Hello!"),
-        Message(sender: "a@b.com", body: "Hi."),
-        Message(sender: "123@123.com", body: "What's up?")
+        Message(sender: "123@@123.com", body: "You might wonder why you can't see the live messages."),
+        Message(sender: "a@b.com", body: "It's because you're not in your setted region."),
+        Message(sender: "123@123.com", body: "Go back to your region or change it to your current location to be able to chat again.")
     ]
     
     let db = Firestore.firestore()
+    let mapView = MapViewController()
+    let defaults = UserDefaults.standard
     
     // MARK: - LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.dataSource = self
         navigationItem.hidesBackButton = true
-        
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
-        
-        loadMessages()
+        let isUserInRegion = defaults.bool(forKey: K.GeoFence.isInRegionKey)
+        if isUserInRegion == true {
+            loadMessages()
+        }
     }
     
     // MARK: - @IBActions

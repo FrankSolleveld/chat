@@ -16,6 +16,7 @@ class MapViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     let defaults = UserDefaults.standard
+    var isInRegion = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +24,13 @@ class MapViewController: UIViewController {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
             // MARK: - TODO: Handle completion handler for Notifications
         }
-
+        
         locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.requestAlwaysAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        
         checkForCoordinates()
     }
     
@@ -39,6 +42,7 @@ class MapViewController: UIViewController {
         saveCoordinates(coordinate)
         
         let region = CLCircularRegion(center: coordinate, radius: 200, identifier: "geoRegion")
+        isUserInRegion(region)
         mapView.removeOverlays(mapView.overlays)
         locationManager.startMonitoring(for: region)
         
@@ -85,13 +89,18 @@ class MapViewController: UIViewController {
         
         let circle = MKCircle(center: coordinates, radius: region.radius)
         mapView.addOverlay(circle)
+        isUserInRegion(region)
     }
-
-
+    
+    func isUserInRegion(_ region: CLCircularRegion) {
+        if let coordinates = locationManager.location?.coordinate {
+           isInRegion = region.contains(coordinates)
+            defaults.set(isInRegion, forKey: K.GeoFence.isInRegionKey)
+        }
+    }
 }
 
 extension MapViewController: CLLocationManagerDelegate {
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Simply shows user location.
         locationManager.stopUpdatingLocation()
@@ -101,13 +110,14 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         showAlert(title: K.GeoFence.geoAlertEnteredTitle , message: K.GeoFence.geoAlertEnteredBody)
         showNotification(title: K.GeoFence.geoAlertEnteredTitle, message: K.GeoFence.geoAlertEnteredBody)
+        isInRegion = true
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         showAlert(title: K.GeoFence.geoAlertExitTitle, message: K.GeoFence.geoAlertExitBody)
         showNotification(title: K.GeoFence.geoAlertExitTitle, message: K.GeoFence.geoAlertExitBody)
+        isInRegion = false
     }
-    
 }
 
 extension MapViewController: MKMapViewDelegate {

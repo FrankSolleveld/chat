@@ -35,6 +35,8 @@ struct K {
         static let defaultsLatKey = "geoLatitude"
         static let defaultsLongKey = "geoLongitude"
         
+        static let isInRegionKey = "isInRegion"
+        
         static let geoAlertEnteredTitle = "You Entered the Region."
         static let geoAlertEnteredBody = "You can now use GeoChat."
         
