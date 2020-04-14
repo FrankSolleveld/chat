@@ -10,7 +10,7 @@ import MapKit
 import CoreLocation
 
 class MapViewController: UIViewController {
-
+    
     // MARK: - @IBOutlets
     @IBOutlet weak var mapView: MKMapView!
     
@@ -32,7 +32,7 @@ class MapViewController: UIViewController {
         
         // Converts user touch location to coordinates
         let coordinate = mapView.convert(touchLocation, toCoordinateFrom: mapView)
-        saveCoordinates(coordinate)
+        geo.saveCoordinates(coordinate)
         
         let region = CLCircularRegion(center: coordinate, radius: 200, identifier: "geoRegion")
         locationManager.isUserInRegion(region)
@@ -55,14 +55,6 @@ class MapViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func saveCoordinates(_ coordinate: CLLocationCoordinate2D){
-        let lat = Double(coordinate.latitude)
-        let long = Double(coordinate.longitude)
-        
-        defaults.set(lat, forKey: K.GeoFence.defaultsLatKey)
-        defaults.set(long, forKey: K.GeoFence.defaultsLongKey)
-    }
-    
     func checkForCoordinates() {
         let lat = defaults.double(forKey: K.GeoFence.defaultsLatKey)
         let long = defaults.double(forKey: K.GeoFence.defaultsLongKey)
@@ -81,7 +73,7 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let circleOverlay = overlay as? MKCircle else { return MKOverlayRenderer() }
         
-         // This renders the selected region for the GeoFence on the map.
+        // This renders the selected region for the GeoFence on the map.
         let circleRenderer = MKCircleRenderer(circle: circleOverlay)
         circleRenderer.fillColor = UIColor(named: "GreenColor")
         circleRenderer.alpha = 0.5

@@ -11,7 +11,6 @@ import CoreLocation
 class LocationManager: NSObject, CLLocationManagerDelegate {
     
     private let locationManager = CLLocationManager()
-//    private var mapView = MapViewController()
     var region = CLCircularRegion()
     var isInRegion = false
     let defaults = UserDefaults.standard
@@ -38,7 +37,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func isUserInRegion(_ region: CLCircularRegion) {
         if let coordinates = locationManager.location?.coordinate {
-           isInRegion = region.contains(coordinates)
+            isInRegion = region.contains(coordinates)
             defaults.set(isInRegion, forKey: K.GeoFence.isInRegionKey)
         }
     }
