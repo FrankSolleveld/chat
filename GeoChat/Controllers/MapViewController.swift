@@ -15,7 +15,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let defaults = UserDefaults.standard
-    let feedbackGenerator = UISelectionFeedbackGenerator()
+    let feedbackGenerator = UIImpactFeedbackGenerator()
     let region = CLCircularRegion()
     let geo = Geo()
     let locationManager = LocationManager.shared
@@ -43,7 +43,7 @@ class MapViewController: UIViewController {
         mapView.addOverlay(circle)
         
         // This provides the user with haptic feedback to indicate a change in the selection of the region.
-        feedbackGenerator.selectionChanged()
+        feedbackGenerator.impactOccurred()
     }
     
     // Method that shows alert when going in/out the specific region.
