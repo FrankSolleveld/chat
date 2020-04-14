@@ -10,12 +10,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UINavigationBar.appearance().barTintColor = UIColor(named: "GreenColor")
         UIApplication.shared.applicationIconBadgeNumber = 0
+        FirebaseApp.configure()
+        let _ = Firestore.firestore()
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.keyboardDistanceFromTextField = 0
-        FirebaseApp.configure()
-        let _ = Firestore.firestore()
         return true
     }
 
@@ -32,8 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
 }
 
 

@@ -7,6 +7,8 @@ class WelcomeViewController: UIViewController {
     // MARK: - @IBOutlet
     @IBOutlet weak var titleLabel: UILabel!
     
+    let locationManager = LocationManager.shared
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
@@ -28,6 +30,13 @@ class WelcomeViewController: UIViewController {
                 self.titleLabel.text?.append(letter)
             }
             characterIndex += 1
+        }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+            if granted {
+                print("[WelcomeViewController] UNUserNotificationCenter: User granted permission.")
+            } else if let err = error {
+                print("[WelcomeViewController] UNUserNotificationCenter: An error occured \(err)")
+            }
         }
     }
     

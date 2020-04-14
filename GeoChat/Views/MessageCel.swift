@@ -15,6 +15,9 @@ class MessageCel: UITableViewCell {
     @IBOutlet weak var leftImageView: UIImageView!
     @IBOutlet weak var userLabel: UILabel!
     
+    // MARK: - TODO: Change chat bubble color for sender
+    // MARK: - TODO: Change 'Me' label to right side instead of the left side for consistency.
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         messageBubble.layer.cornerRadius = messageBubble.frame.size.height / 5

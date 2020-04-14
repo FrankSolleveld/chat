@@ -8,6 +8,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextfield: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
 
+    let locationManager = LocationManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextfield.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])

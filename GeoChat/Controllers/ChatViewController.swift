@@ -19,6 +19,7 @@ class ChatViewController: UIViewController {
         Message(sender: K.appTitle, body: "Log out and tap on Geofencing to start a region. To do this, zoom in on your desired location and hold. A green circle will appear. If you already set a region, go back to your region or change it to your current location to be able to chat again.")
     ]
     
+    let locationManager = LocationManager.shared
     let db = Firestore.firestore()
     let mapView = MapViewController()
     let defaults = UserDefaults.standard
