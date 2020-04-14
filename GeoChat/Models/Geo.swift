@@ -29,5 +29,15 @@ struct Geo {
         
         defaults.set(lat, forKey: K.GeoFence.defaultsLatKey)
         defaults.set(long, forKey: K.GeoFence.defaultsLongKey)
-    }  
+    }
+    
+    func notificationRequest(){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+            if granted {
+                print("UNUserNotificationCenter: User granted permission.")
+            } else if let err = error {
+                print("UNUserNotificationCenter: An error occured \(err)")
+            }
+        }
+    }
 }

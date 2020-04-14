@@ -26,7 +26,12 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.requestAlwaysAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.startUpdatingLocation()
+        locationManager.pausesLocationUpdatesAutomatically = false
+    }
+    
+    @objc func checkForLocation() {
         locationManager.startUpdatingLocation()
     }
     
