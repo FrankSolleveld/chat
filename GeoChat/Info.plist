@@ -23,9 +23,9 @@
 	<key>MKDirectionsApplicationSupportedModes</key>
 	<array/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>We want enable the app whenever you are inside the chosen region.</string>
+	<string>We use your location to determine whether or not you are within your GeoFence.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We want enable the app whenever you are inside the chosen region.</string>
+	<string>We use your location to determine whether or not you are within your GeoFence.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

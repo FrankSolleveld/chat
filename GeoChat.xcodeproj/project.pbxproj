@@ -20,6 +20,7 @@
 		951D03B62443316B007C0C94 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 951D03B52443316B007C0C94 /* GoogleService-Info.plist */; };
 		951D03B924433561007C0C94 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D03B824433561007C0C94 /* Message.swift */; };
 		951D03BC24435BA6007C0C94 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 951D03BB24435BA6007C0C94 /* IQKeyboardManagerSwift */; };
+		95513E2F2445D5CC00D62A6C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 95513E2E2445D5CC00D62A6C /* README.md */; };
 		955306052442075D009B6DFE /* MessageCel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955306032442075D009B6DFE /* MessageCel.swift */; };
 		955306062442075D009B6DFE /* MessageCel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 955306042442075D009B6DFE /* MessageCel.xib */; };
 		955E1982244589D300694B7A /* GeoChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955E1981244589D300694B7A /* GeoChatTests.swift */; };
@@ -59,6 +60,7 @@
 		89329BA491564EEC113FE151 /* Pods-GeoChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoChat.release.xcconfig"; path = "Target Support Files/Pods-GeoChat/Pods-GeoChat.release.xcconfig"; sourceTree = "<group>"; };
 		951D03B52443316B007C0C94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		951D03B824433561007C0C94 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		95513E2E2445D5CC00D62A6C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		955306032442075D009B6DFE /* MessageCel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCel.swift; sourceTree = "<group>"; };
 		955306042442075D009B6DFE /* MessageCel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCel.xib; sourceTree = "<group>"; };
 		955E197F244589D300694B7A /* GeoChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 		0B62816A235DEE8100E35CAF = {
 			isa = PBXGroup;
 			children = (
+				95513E2E2445D5CC00D62A6C /* README.md */,
 				0B628175235DEE8100E35CAF /* GeoChat */,
 				955E1980244589D300694B7A /* GeoChatTests */,
 				0B628174235DEE8100E35CAF /* Products */,
@@ -285,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95513E2F2445D5CC00D62A6C /* README.md in Resources */,
 				951D03B62443316B007C0C94 /* GoogleService-Info.plist in Resources */,
 				0B628183235DEE8400E35CAF /* LaunchScreen.storyboard in Resources */,
 				0B628180235DEE8400E35CAF /* Assets.xcassets in Resources */,

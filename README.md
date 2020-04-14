@@ -1,6 +1,6 @@
 #  GeoChat
 
-A application that let's you chat within the app only whilst in a GeoFence.
+An application that let's you chat within the app only whilst in a GeoFence.
 
 ## TestFlight link
 A public TestFlight link is available from the following [link](https://testflight.apple.com/join/2oIGbzRw). 
