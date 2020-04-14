@@ -45,10 +45,8 @@ class ChatViewController: UIViewController {
     
     // MARK: - @IBActions
     @IBAction func sendPressed(_ sender: UIButton) {
-        if let _ = messageTextfield.text?.isEmpty {
-            return
-        } else {
             if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
+                guard !messageBody.isEmptyOrWhitespace() else { return }
                 db.collection(K.FStore.collectionName).addDocument(data: [
                     K.FStore.senderField: messageSender,
                     K.FStore.bodyField: messageBody,
@@ -64,7 +62,7 @@ class ChatViewController: UIViewController {
                     }
                 }
             }
-        }
+        
     }
     
     @IBAction func logOutButtonPressed(_ sender: UIBarButtonItem) {
@@ -139,4 +137,14 @@ extension ChatViewController: UITableViewDataSource {
     }
 }
 
+extension String {
+    func isEmptyOrWhitespace() -> Bool {
 
+        // Check empty string
+        if self.isEmpty {
+            return true
+        }
+        // Trim and check empty string
+        return (self.trimmingCharacters(in: .whitespaces) == "")
+    }
+}
