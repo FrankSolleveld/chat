@@ -66,4 +66,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         let isInRegion = false
         UserDefaults.standard.set(isInRegion, forKey: K.GeoFence.isInRegionKey)
     }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        let isInRegion = false
+        UserDefaults.standard.set(isInRegion, forKey: K.GeoFence.isInRegionKey)
+    }
 }
